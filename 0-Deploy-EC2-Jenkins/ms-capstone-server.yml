@@ -32,6 +32,7 @@ Resources:
           sudo apt upgrade -y
           sudo apt install openjdk-8-jdk -y
           sudo apt install jenkins -y
+update          sudo apt install awscli -y
 
   JenkinsSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
