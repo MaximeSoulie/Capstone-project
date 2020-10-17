@@ -47,3 +47,7 @@ Resources:
           FromPort: '8080'
           ToPort: '8080'
           CidrIp: !Sub '${WhitelistedIP}'
+Outputs:
+  Website:
+    Description: Public DNS of EC2 Instance
+    Value: !Join ['', ['http://', !GetAtt 'JenkinsEC2Instance.PublicDnsName', ':8080']]
