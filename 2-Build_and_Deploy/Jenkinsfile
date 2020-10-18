@@ -27,14 +27,6 @@ pipeline {
                     }
                 }
             }
- stage('lint'){
-       steps {
-        sh "virtualenv --python=/usr/bin/python3 venv"
-        sh "export TERM='linux'"  
-        sh 'pylint app.py'
-        sh "rm -r venv/"
-       }   
-     }
  stage('Build docker image') {
             steps {
                 script {
