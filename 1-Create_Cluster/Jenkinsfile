@@ -18,7 +18,7 @@ eksctl create cluster \
 --zones us-west-2a \
 --zones us-west-2b \
 --ssh-access \
---ssh-public-key udabuntu \
+--ssh-public-key ekskey \
 --managed
 					'''
 				}
