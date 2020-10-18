@@ -33,6 +33,9 @@ Resources:
           sudo apt install openjdk-8-jdk -y
           sudo apt install jenkins -y
           sudo apt install awscli -y
+          curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+          sudo mv /tmp/eksctl /usr/local/bin
+          
 
   JenkinsSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
