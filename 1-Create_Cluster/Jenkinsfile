@@ -15,7 +15,6 @@ eksctl create cluster \
 --nodes 3 \
 --nodes-min 1 \
 --nodes-max 4 \
---node-ami auto \
 --zones us-west-2a \
 --zones us-west-2b \
 --ssh-access \
