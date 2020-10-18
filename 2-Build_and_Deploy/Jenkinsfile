@@ -25,11 +25,16 @@ pipeline {
                  aquaMicroscanner imageName: 'msoulie/capstone-project:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
               }
          }       
-         stage('Upload to Docker') {
-             steps {
-               
-               }
-             }
+     stage('Push Image To Dockerhub') {
+			steps {
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub-cr', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
+					sh '''
+						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+						docker push msoulie/capstone-project:latest
+					'''
+				}
+			}
+		}
          }
 def userInput = true
 def didTimeout = false
