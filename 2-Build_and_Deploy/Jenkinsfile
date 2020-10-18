@@ -15,10 +15,10 @@ pipeline {
                   sh 'tidy -q -e *.html'
               }
          }
-             stage('test1') {
-      steps {
-        echo 'Hello World'
-        snsPublish(topicArn: 'arn:aws:sns:us-west-2:086340503613:jenkinspratice', subject: 'PraticebuildOK', message: 'build is ok')
+        stage('test1') {
+             steps {
+                echo 'Hello World'
+                snsPublish(topicArn: 'arn:aws:sns:us-west-2:086340503613:jenkinspratice', subject: 'PraticebuildOK', message: 'build is ok')
       }
       stage('Security Scan') {
               steps { 
