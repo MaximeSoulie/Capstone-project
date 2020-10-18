@@ -20,6 +20,7 @@ pipeline {
                 echo 'Hello World'
                 snsPublish(topicArn: 'arn:aws:sns:us-west-2:086340503613:jenkinspratice', subject: 'PraticebuildOK', message: 'build is ok')
       }
+        }
       stage('Security Scan') {
               steps { 
                  aquaMicroscanner imageName: 'msoulie/capstone-project:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
@@ -37,5 +38,4 @@ pipeline {
 
              }
      }
-     }
-}
+ }
