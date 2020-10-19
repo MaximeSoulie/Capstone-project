@@ -13,8 +13,11 @@ stage ("lint dockerfile") {
         }
     }
     steps {
-        sh '''   hadolint 2-Build_and_Deploy/Dockerfile | tee -a hadolint_lint.txt
-        if [[ -s hadolint_lint.txt ]]; then echo "file contains output" && exit 1; else echo "hadolint_lint.txt is empty"; fi
+        sh '''   hadolint 2-Build_and_Deploy/Dockerfile | tee -a $(pwd)/hadolint_lint.txt
+        if [[ -s $(pwd)/hadolint_lint.txt ]]; then echo "file contains output" && exit 1; else echo "hadolint_lint.txt is empty"; fi
+        echo $(pwd)
+        pwd=$(pwd)
+        echo $pwd
         '''
     }
     post {
