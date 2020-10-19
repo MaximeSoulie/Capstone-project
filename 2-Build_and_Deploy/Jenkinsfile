@@ -36,15 +36,12 @@ stage ("lint dockerfile") {
               }
          }       
      stage('Push Image To Dockerhub') {
-			steps {
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub-cr', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
-					sh '''
-						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-						docker push msoulie/capstone-project:${env.BUILD_ID}
-                        docker push msoulie/capstone-project:latest
-					'''
-				}
-			}
+              script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cr') {
+                        image.push("${env.BUILD_ID}")
+                        image.push("latest")
+                    }
+                }
         }
      stage('Clean up Docker local images') {
             steps {
