@@ -39,8 +39,8 @@ stage ("lint dockerfile") {
             steps {
               script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cr') {
-                        image.push("${env.BUILD_ID}")
-                        image.push("latest")
+                        image.push("msoulie/capstone-project:${env.BUILD_ID}")
+                        image.push("msoulie/capstone-project:latest")
                     }
                 }
         }
