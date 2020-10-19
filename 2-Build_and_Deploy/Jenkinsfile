@@ -24,7 +24,7 @@ stage ("lint dockerfile") {
  stage('Build docker image') {
             steps {
                 script {
-                    image = docker.build("msoulie/capstone-project", "-f Dockerfile")
+                    image = docker.build("msoulie/capstone-project", "-f 2-Build_and_Deploy/Dockerfile")
                 }
             }
         }
