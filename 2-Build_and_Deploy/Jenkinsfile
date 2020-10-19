@@ -45,7 +45,15 @@ stage ("lint dockerfile") {
 					'''
 				}
 			}
+        }
+     stage('Clean up Docker local images') {
+            steps {
+                script {
+                    sh 'docker system prune -f'
+                }
+            }
+        }
 
-             }
+
      }
  }
