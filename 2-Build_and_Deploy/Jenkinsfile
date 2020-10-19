@@ -24,7 +24,7 @@ stage ("lint dockerfile") {
  stage('Build docker image') {
             steps {
                 script {
-                    image = docker.build("capstone-project:${env.BUILD_ID}", "-f ./2-Build_and_Deploy/Dockerfile ./2-Build_and_Deploy/")
+                    image = docker.build("msoulie/capstone-project:${env.BUILD_ID}", "-f ./2-Build_and_Deploy/Dockerfile ./2-Build_and_Deploy/")
                 }
             }
         }
@@ -39,8 +39,8 @@ stage ("lint dockerfile") {
             steps {
               script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cr') {
-                        image.push("msoulie/capstone-project:${env.BUILD_ID}")
-                        image.push("msoulie/capstone-project:latest")
+                        image.push("${env.BUILD_ID}")
+                        image.push("latest")
                     }
                 }
         }
