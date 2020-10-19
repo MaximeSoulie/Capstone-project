@@ -25,14 +25,12 @@ stage ("lint dockerfile") {
             steps {
                 script {
                     image = docker.build("capstone-project:${env.BUILD_ID}", "-f ./2-Build_and_Deploy/Dockerfile ./2-Build_and_Deploy/")
-                    image.push()
-                	image.push('latest')
                 }
             }
         }
       stage('Security Scan') {
               steps { 
-                 aquaMicroscanner imageName: 'msoulie/capstone-project:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
+                 aquaMicroscanner imageName: 'capstone-project:${env.BUILD_ID}', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
               }
          }       
      stage('Push Image To Dockerhub') {
@@ -40,7 +38,8 @@ stage ("lint dockerfile") {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub-cr', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
 						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-						docker push msoulie/capstone-project:latest
+						docker push msoulie/capstone-project:${env.BUILD_ID}
+                        docker push msoulie/capstone-project:latest
 					'''
 				}
 			}
