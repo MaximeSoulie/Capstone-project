@@ -24,14 +24,14 @@ stage ("lint dockerfile") {
  stage('Build docker image') {
             steps {
                 script {
-                    image = docker.build("msoulie/capstone-project:${env.BUILD_ID}", "-f ./2-Build_and_Deploy/Dockerfile ./2-Build_and_Deploy/")
+                    image = docker.build("msoulie/capstone-project", "-f ./2-Build_and_Deploy/Dockerfile ./2-Build_and_Deploy/")
                 }
             }
         }
       stage('Security Scan') {
               steps { 
                   script {
-                 secscan = aquaMicroscanner imageName: "msoulie/capstone-project:${env.BUILD_ID}", notCompliesCmd: "exit 1", onDisallowed: "pass", outputFormat: "html"
+                 secscan = aquaMicroscanner imageName: "msoulie/capstone-project", notCompliesCmd: "exit 1", onDisallowed: "pass", outputFormat: "html"
                 }
               }
          }       
