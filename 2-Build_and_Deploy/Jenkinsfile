@@ -14,6 +14,7 @@ stage ("lint dockerfile") {
     }
     steps {
         sh '''   hadolint 2-Build_and_Deploy/Dockerfile | tee -a $(pwd)/hadolint_lint.txt
+        sleep 2
         [[ -s "$(pwd)/hadolint_lint.txt" ]] && echo "Filesize not zero" && exit 1 || echo "Filesize zero"
         '''
     }
