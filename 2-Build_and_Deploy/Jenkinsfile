@@ -30,7 +30,9 @@ stage ("lint dockerfile") {
         }
       stage('Security Scan') {
               steps { 
-                 aquaMicroscanner imageName: 'capstone-project:${env.BUILD_ID}', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
+                  script {
+                 secscan = aquaMicroscanner imageName: "capstone-project:${env.BUILD_ID}", notCompliesCmd: "exit 1", onDisallowed: "fail", outputFormat: "html"
+                }
               }
          }       
      stage('Push Image To Dockerhub') {
