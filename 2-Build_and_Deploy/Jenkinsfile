@@ -57,8 +57,10 @@ stage ("lint dockerfile") {
      stage('Set kubeconfig then apply deployment - rolling update') {
             steps {
                 script {
+                    withAWS(credentials: 'aws-capstone', region: 'us-west-2') {
                     sh 'aws eks --region us-west-2 update-kubeconfig --name capstonecluster'
                     sh 'kubectl apply -f mycapstoneapp.yaml'
+                    }
                 }
             }
         }
