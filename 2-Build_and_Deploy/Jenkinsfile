@@ -59,7 +59,7 @@ stage ("lint dockerfile") {
                 script {
                     withAWS(credentials: 'aws-capstone', region: 'us-west-2') {
                     sh 'aws eks --region us-west-2 update-kubeconfig --name capstonecluster'
-                    sh 'kubectl apply -f mycapstoneapp.yaml'
+                    sh 'kubectl apply -f ./2-Build_and_Deploy/mycapstoneapp.yaml'
                     }
                 }
             }
