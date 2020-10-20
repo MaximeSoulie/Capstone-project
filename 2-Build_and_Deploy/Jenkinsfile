@@ -61,7 +61,7 @@ stage ("lint dockerfile") {
         }
          stage('Deployment complete') {
              steps {
-                 sh 'ELB=$(kubectl get service mycapstoneapp-service -n mlapp4ms -o json | jq -r '.status.loadBalancer.ingress[].hostname') ; echo "deployment endpoint $ELB"'
+                 sh 'ELB=$(kubectl get service mycapstoneapp-service -n mlapp4ms -o json | jq -r ".status.loadBalancer.ingress[].hostname") ; echo "deployment endpoint: $ELB"'
              }
          }
 
