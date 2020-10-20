@@ -36,7 +36,7 @@ app.title=tabtitle
 ########### Layout
 
 app.layout = html.Div(children=[
-    html.H1('Virginia Census Data 2017'),
+    html.H1('Virginia Census Data of 2017'),
     # Dropdowns
     html.Div(children=[
         # left side
@@ -59,6 +59,8 @@ app.layout = html.Div(children=[
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A("Data Source", href=sourceurl),
+    html.Br(),
+    html.P("this is app v1.1")
     ]
 )
 
