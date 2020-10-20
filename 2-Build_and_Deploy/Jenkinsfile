@@ -50,7 +50,7 @@ stage ("lint dockerfile") {
      stage('Clean up Docker local images') {
             steps {
                 script {
-                    sh 'docker image prune --filter "label!=keep"'
+                    sh 'docker image prune -a --filter "label!=keep"'
                 }
             }
         }
